@@ -1,3 +1,5 @@
+![Pi Codex Session Transfer](./intro.png)
+
 # Pi Codex Session Transfer
 
 A Codex skill for safely moving selected local chat sessions between Codex and Pi Agent, in either direction.
