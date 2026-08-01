@@ -1,0 +1,4 @@
+server.log
+server.error.log
+*.tmp
+.DS_Store
