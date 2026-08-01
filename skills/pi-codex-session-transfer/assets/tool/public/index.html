@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codex 与 Pi Agent 会话迁移</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">LOCAL SESSION TOOL</div>
+          <h1>Codex <span>&harr;</span> Pi Agent</h1>
+          <p class="subtitle">会话双向迁移</p>
+        </div>
+        <button id="refresh" class="button secondary" type="button">刷新</button>
+      </header>
+
+      <nav class="mode-switch" aria-label="迁移方向">
+        <button class="mode-button active" type="button" data-mode="codex-to-pi">Codex &rarr; Pi</button>
+        <button class="mode-button" type="button" data-mode="pi-to-codex">Pi Agent &rarr; Codex</button>
+      </nav>
+
+      <section class="control-panel">
+        <div class="controls-row">
+          <label class="search-field">
+            <span>搜索会话</span>
+            <input id="search" type="search" placeholder="标题、内容或工作目录" />
+          </label>
+          <label id="source-filter-field">
+            <span>来源</span>
+            <select id="source-filter">
+              <option value="all">全部</option>
+              <option value="active">当前会话</option>
+              <option value="archived">已归档</option>
+            </select>
+          </label>
+          <button id="select-visible" class="button secondary" type="button">全选当前结果</button>
+          <button id="clear-selection" class="button secondary" type="button">清空选择</button>
+        </div>
+
+        <div class="import-row">
+          <div id="pi-settings" class="transfer-settings">
+            <label>
+              <span>目标模型</span>
+              <select id="model"></select>
+            </label>
+            <label>
+              <span>推理等级</span>
+              <select id="thinking">
+                <option value="off">关闭</option>
+                <option value="low">低</option>
+                <option value="medium">中</option>
+                <option value="high" selected>高</option>
+                <option value="xhigh">极高</option>
+                <option value="max">最大</option>
+              </select>
+            </label>
+          </div>
+          <label class="check-field">
+            <input id="include-tools" type="checkbox" />
+            <span>保留工具结果文本</span>
+          </label>
+          <button id="transfer" class="button primary" type="button" disabled>导入所选</button>
+        </div>
+      </section>
+
+      <section class="status-row">
+        <span id="summary">正在读取会话...</span>
+        <span id="location" class="muted"></span>
+      </section>
+
+      <section class="table-wrap" aria-label="会话列表">
+        <table>
+          <thead>
+            <tr>
+              <th class="check-col"><input id="select-all" type="checkbox" aria-label="全选" /></th>
+              <th>会话</th>
+              <th>消息</th>
+              <th>工作目录</th>
+              <th>更新时间</th>
+              <th id="source-column">来源</th>
+            </tr>
+          </thead>
+          <tbody id="conversation-list"></tbody>
+        </table>
+        <div id="empty" class="empty" hidden>没有匹配的会话。</div>
+      </section>
+
+      <section id="result" class="result" hidden></section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
