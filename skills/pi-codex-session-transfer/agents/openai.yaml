@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pi Codex Session Transfer"
+  short_description: "Bidirectionally move Codex and Pi Agent sessions safely."
+  default_prompt: "Use $pi-codex-session-transfer to launch the local tool and move the selected sessions."
